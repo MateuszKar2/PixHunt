@@ -3,25 +3,47 @@ import css from "./Searchbar.module.css"
 
 
 class Seachbar extends Component {
-    render() {
-        return(
-<header class={css.searchbar}>
-  <form class={css.form}>
-    <button type="submit" class="button">
-      <span class={css.buttonLabel}>Search</span>
-    </button>
 
-    <input
-      class={css.input}
-      type="text"
-      autocomplete="off"
-      autofocus
-      placeholder="Search images and photos"
-    />
-  </form>
-</header>
-        )
-    }
+  state = {
+    query: "",
+    inputValue: "",
+  };
+  handleInputChange = (e) => {
+    this.setState({ inputValue: e.target.value });
+  };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const searchQuery = e.target.elements.query.value.trim();
+    this.props.onSubmit(searchQuery);
+  };
+
+  render() {
+    return (
+      <header className={css.Searchbar}>
+        <form className={css.SearchForm} onSubmit={this.handleSubmit}>
+          <button className={css.SearchFormButton} type="submit">
+            <span>Search</span>
+          </button>
+
+          <input
+            className={css.SearchFormInput}
+            onChange={this.handleInputChange}
+            value={this.state.inputValue}
+            name="query"
+            type="text"
+            autoComplete="off"
+            autoFocus
+            placeholder="Search images and photos"
+          />
+        </form>
+      </header>
+    );
+  }
 }
+
+Searchbar.propTypes = {
+  onSubmit: PropTypes.func,
+};
 
 export default Seachbar
