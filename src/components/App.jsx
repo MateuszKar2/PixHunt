@@ -15,7 +15,7 @@ export class App extends Component {
       modalIndex: '-1',
       loading: false,
       loadingMore: false,
-      query: 'Pokemon',
+      query: 'wolves',
       page: 0,
       scroll: 0,
     };
