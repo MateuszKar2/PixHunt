@@ -1,19 +1,40 @@
-import React,{Component} from "react"
+import {Component} from "react"
 import css from "./Modal.module.css"
+import { PropTypes } from 'prop-types';
 
-class Modal extends Component {
-     
-    
-    
-    render() {
-        return(
-            <div class={css.overlay}>
-                <div class={css.modal}>
-                    <img src="" alt="" />
-                </div>
-            </div>
-        )
+export class Modal extends Component {
+     static defaultProps = {
+        url: 'no url',
+        alt: 'no alt',
      }
-}
-
-export default Modal
+     handleKeyUp = e => {
+        if (e.key === 'Escape') this.props.stateUpdate('modalIndex', '-1');
+      };
+      closeModal = e => {
+        if (e.target.className === css.Overlay)
+          this.props.stateUpdate('modalIndex', '-1');
+      };
+    
+      componentDidMount() {
+        document.addEventListener('keyup', this.handleKeyUp);
+      }
+    
+      componentWillUnmount() {
+        document.removeEventListener('keyup', this.handleKeyUp);
+      }
+    
+      render() {
+        return (
+          <div className={css.Overlay} onClick={this.closeModal}>
+            <div className={css.Modal}>
+              <img className={css.img} src={this.props.url} alt={this.props.alt} />
+            </div>
+          </div>
+        );
+      }
+    }
+    
+    Modal.propTypes = {
+      url: PropTypes.string,
+      alt: PropTypes.string,
+    };
