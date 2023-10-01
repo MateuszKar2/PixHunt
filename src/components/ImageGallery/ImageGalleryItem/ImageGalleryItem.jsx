@@ -10,7 +10,6 @@ export class ImageGalleryItem extends Component {
         alt: 'no alt',
     };
 
-
     render() {
 
         return(
