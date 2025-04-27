@@ -1,4 +1,4 @@
-# 📸 PixHunt – React Image Search App
+ # 📸 PixHunt – React Image Search App
 
 **PixHunt** is a responsive React application that allows users to search for images using the [Pixabay API](https://pixabay.com/api/docs/). Built with modular components and hooks, this project offers infinite scrolling, loading indicators, and error handling – all wrapped in a clean UI.
 
